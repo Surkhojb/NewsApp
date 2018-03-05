@@ -12,6 +12,6 @@ import retrofit2.http.GET;
  */
 
 public interface NewsApi {
-    @GET("top-headlines?sources=google-news&apiKey=629fee6ea2c14beeb0eb6496b90f2781")
+    @GET("top-headlines?sources=ars-technica&apiKey=629fee6ea2c14beeb0eb6496b90f2781")
     Observable<News> getNews();
 }
