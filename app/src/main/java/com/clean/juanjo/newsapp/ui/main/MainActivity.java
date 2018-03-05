@@ -1,0 +1,99 @@
+package com.clean.juanjo.newsapp.ui.main;
+
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import com.clean.juanjo.newsapp.NewsApp;
+import com.clean.juanjo.newsapp.R;
+import com.clean.juanjo.newsapp.injection.component.DaggerMainActivityComponent;
+import com.clean.juanjo.newsapp.injection.module.MainActivityModule;
+import com.clean.juanjo.newsapp.ui.detail.DetailActivity;
+import com.clean.juanjo.newsapp.ui.main.presentation.NewsViewModel;
+import com.clean.juanjo.newsapp.ui.main.presentation.NewsViewModelFactory;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity implements NewsClickListener{
+
+    @BindView(R.id.rv_news)
+    RecyclerView rvNews;
+    NewsAdapter rvAdapter;
+
+    @Inject
+    NewsViewModelFactory newsFactory;
+    NewsViewModel newsViewModel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        injectDependencies();
+        initRecyclerView();
+
+        newsViewModel = ViewModelProviders.of(this,newsFactory).get(NewsViewModel.class);
+        newsViewModel.news().observe(this, news -> rvAdapter.refreshArticles(news.getArticles()));
+        newsViewModel.loadNews();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_refresh: newsViewModel.loadNews(); return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void initRecyclerView(){
+        rvNews.setHasFixedSize(true);
+        rvNews.setLayoutManager(new LinearLayoutManager(this));
+        rvAdapter = new NewsAdapter();
+        rvAdapter.setOnClickListener(this);
+        rvNews.setAdapter(rvAdapter);
+    }
+
+    private void injectDependencies() {
+
+        DaggerMainActivityComponent.builder()
+                .appComponent(NewsApp.getComponent())
+                .mainActivityModule(new MainActivityModule())
+                .build()
+                .inject(this);
+    }
+
+    @Override
+    public void onNewClick(View v, int position) {
+        Intent deailIntent = new Intent(this, DetailActivity.class);
+        deailIntent.putExtra(DetailActivity.ARTICLE_EXTRA,rvAdapter.getArticle(position));
+        startActivity(deailIntent);
+    }
+
+    @Override
+    public void onBooksMarkClick(View v, int position) {
+        Toast.makeText(getApplicationContext(),"Booksmark clicked",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onShareClick(View v, int position) {
+        Toast.makeText(getApplicationContext(),"Share clicked",Toast.LENGTH_SHORT).show();
+    }
+}
