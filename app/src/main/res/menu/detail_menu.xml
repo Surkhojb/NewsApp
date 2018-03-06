@@ -5,4 +5,9 @@
         android:title="@string/menu_refresh"
         android:icon="@drawable/ic_share"
         app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_booksmark"
+        android:title="@string/menu_booksmark"
+        android:icon="@drawable/ic_bookmark"
+        app:showAsAction="ifRoom"/>
 </menu>

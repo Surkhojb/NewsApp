@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NewsClickListener
         initRecyclerView();
 
         newsViewModel = ViewModelProviders.of(this,newsFactory).get(NewsViewModel.class);
-        newsViewModel.news().observe(this, news -> rvAdapter.refreshArticles(news.getArticles()));
+        newsViewModel.news().observe(this, articles -> rvAdapter.refreshArticles(articles));
         newsViewModel.loadNews();
 
     }

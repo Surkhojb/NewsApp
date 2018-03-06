@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.clean.juanjo.newsapp.data.INewsRepository;
+import com.clean.juanjo.newsapp.domain.model.ArticleMapper;
 
 import javax.inject.Inject;
 
@@ -17,17 +18,19 @@ import javax.inject.Inject;
 public class NewsViewModelFactory implements ViewModelProvider.Factory {
 
     private INewsRepository newsRepository;
+    private ArticleMapper articleMapper;
 
     @Inject
-    public NewsViewModelFactory(INewsRepository repository){
+    public NewsViewModelFactory(INewsRepository repository, ArticleMapper mapper){
         this.newsRepository = repository;
+        this.articleMapper = mapper;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if(modelClass.isAssignableFrom(NewsViewModel.class))
-            return (T) new NewsViewModel(newsRepository);
+            return (T) new NewsViewModel(newsRepository,articleMapper);
         throw new IllegalArgumentException("Unknow viewmodel class");
     }
 }

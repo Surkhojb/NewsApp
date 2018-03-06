@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.clean.juanjo.newsapp.R;
 import com.clean.juanjo.newsapp.domain.Article;
+import com.clean.juanjo.newsapp.domain.model.ArticleModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ import butterknife.ButterKnife;
  */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-    private List<Article> articles = new ArrayList<>();
+    private List<ArticleModel> articles = new ArrayList<>();
     private NewsClickListener listener;
 
     @Override
@@ -36,7 +37,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(NewsAdapter.ViewHolder holder, int position) {
-        Article article = articles.get(position);
+        ArticleModel article = articles.get(position);
         holder.bind(article);
     }
 
@@ -45,7 +46,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return articles.size();
     }
 
-    public void refreshArticles(List<Article> list){
+    public void refreshArticles(List<ArticleModel> list){
         if(!list.isEmpty()){
             articles.clear();
             articles = list;
@@ -54,7 +55,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     }
 
-    public Article getArticle(int position){
+    public ArticleModel getArticle(int position){
         return articles.get(position);
     }
 
@@ -84,10 +85,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             itemShare.setOnClickListener(this);
         }
 
-        public void bind(Article article){
+        public void bind(ArticleModel article){
             itemTitle.setText(article.getTitle());
             itemDescription.setText(article.getDescription());
-            Glide.with(itemPicture).load(article.getUrlToImage()).into(itemPicture);
+            Glide.with(itemPicture).load(article.getUrlImage()).into(itemPicture);
         }
 
         @Override
