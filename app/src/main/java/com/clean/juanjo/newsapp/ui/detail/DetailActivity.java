@@ -2,10 +2,14 @@ package com.clean.juanjo.newsapp.ui.detail;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +34,7 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.detail_description)
     TextView tvDescription;
     @BindView(R.id.detail_link)
-    TextView tvLink;
+    Button btReadMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +67,15 @@ public class DetailActivity extends AppCompatActivity {
         tvAuthor.setText(article.getDateAndAuthor());
         tvTitle.setText(article.getTitle());
         tvDescription.setText(article.getDescription());
+        btReadMore.setOnClickListener(view -> createCustomTab(article.getUrlToArticle()));
+    }
+
+    private void createCustomTab(String url){
+        CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
+        intentBuilder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+
+        CustomTabsIntent customTabsIntent = intentBuilder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 }
