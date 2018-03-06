@@ -1,5 +1,7 @@
 package com.clean.juanjo.newsapp.ui.main;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.clean.juanjo.newsapp.R;
 import com.clean.juanjo.newsapp.domain.Article;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
+import com.clean.juanjo.newsapp.ui.GlideApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +91,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public void bind(ArticleModel article){
             itemTitle.setText(article.getTitle());
             itemDescription.setText(article.getDescription());
-            Glide.with(itemPicture).load(article.getUrlImage()).into(itemPicture);
+            GlideApp.with(itemPicture).load(article.getUrlImage())
+                    .placeholder(new ColorDrawable(Color.parseColor("#D3D3D3")))
+                    .error(new ColorDrawable(Color.parseColor("#D3D3D3"))).into(itemPicture);
         }
 
         @Override

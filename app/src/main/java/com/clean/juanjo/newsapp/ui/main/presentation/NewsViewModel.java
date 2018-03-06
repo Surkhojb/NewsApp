@@ -51,4 +51,10 @@ public class NewsViewModel extends ViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(news -> listOfNews.setValue(articleMapper.transform(news.getArticles()))));
     }
+
+    public void loadNewsBySearch(String query) {
+        compositeDisposable.add(newsRepository.getNewsBySearch(query).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(news -> listOfNews.setValue(articleMapper.transform(news.getArticles()))));
+    }
 }

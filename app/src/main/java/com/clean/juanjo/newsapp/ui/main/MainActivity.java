@@ -1,11 +1,15 @@
 package com.clean.juanjo.newsapp.ui.main;
 
+import android.app.SearchManager;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NewsClickListener
     NewsViewModelFactory newsFactory;
     NewsViewModel newsViewModel;
 
+    SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +58,28 @@ public class MainActivity extends AppCompatActivity implements NewsClickListener
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override public boolean onQueryTextSubmit(String query) {
+                newsViewModel.loadNewsBySearch(query);
+                clearSearchView();
+                return true;
+            }
+
+            @Override public boolean onQueryTextChange(String newText) {
+                //textView.setText(newText);
+                return true;
+            }
+        });
+
         return true;
+    }
+
+    private void clearSearchView() {
+        searchView.clearFocus();
+        searchView.onActionViewCollapsed();
     }
 
     @Override
@@ -79,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements NewsClickListener
                 .build()
                 .inject(this);
     }
+
+
 
     @Override
     public void onNewClick(View v, int position) {

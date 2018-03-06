@@ -1,5 +1,7 @@
 package com.clean.juanjo.newsapp.ui.detail;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.clean.juanjo.newsapp.R;
 import com.clean.juanjo.newsapp.domain.Article;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
+import com.clean.juanjo.newsapp.ui.GlideApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +57,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void loadArticle(ArticleModel article) {
-        Glide.with(imgArticle).load(article.getUrlImage()).into(imgArticle);
+        GlideApp.with(imgArticle).load(article.getUrlImage())
+                .placeholder(new ColorDrawable(Color.parseColor("#D3D3D3")))
+                .error(new ColorDrawable(Color.parseColor("#D3D3D3"))).into(imgArticle);
         tvAuthor.setText(article.getDateAndAuthor());
         tvTitle.setText(article.getTitle());
         tvDescription.setText(article.getDescription());

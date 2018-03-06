@@ -4,6 +4,8 @@ import com.clean.juanjo.newsapp.domain.News;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Juanjo Berenguer.
@@ -12,6 +14,9 @@ import retrofit2.http.GET;
  */
 
 public interface NewsApi {
-    @GET("top-headlines?sources=ars-technica&apiKey=629fee6ea2c14beeb0eb6496b90f2781")
-    Observable<News> getNews();
+    @GET("top-headlines?sources=ars-technica")
+    Observable<News> getNews(@Query("apiKey") String apiKey);
+
+    @GET("everything")
+    Observable<News> getNewsBySearch(@Query("q") String query, @Query("apiKey")String apiKey);
 }

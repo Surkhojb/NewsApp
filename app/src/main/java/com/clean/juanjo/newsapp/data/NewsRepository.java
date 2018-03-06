@@ -25,4 +25,9 @@ public class NewsRepository implements INewsRepository {
     public Observable<News> getNews() {
         return remote.getNews();
     }
+
+    @Override
+    public Observable<News> getNewsBySearch(String query) {
+        return remote.getNewsBySearch(query);
+    }
 }

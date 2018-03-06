@@ -12,4 +12,5 @@ import io.reactivex.Observable;
 
 public interface INewsRepository {
     Observable<News> getNews();
+    Observable<News> getNewsBySearch(String query);
 }

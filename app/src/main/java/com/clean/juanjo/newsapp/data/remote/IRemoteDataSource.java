@@ -12,4 +12,5 @@ import io.reactivex.Observable;
 
 public interface IRemoteDataSource {
     Observable<News> getNews();
+    Observable<News> getNewsBySearch(String query);
 }
