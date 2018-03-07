@@ -2,6 +2,7 @@ package com.clean.juanjo.newsapp;
 
 import android.app.Application;
 
+import android.content.Context;
 import com.clean.juanjo.newsapp.injection.component.AppComponent;
 import com.clean.juanjo.newsapp.injection.component.DaggerAppComponent;
 import com.clean.juanjo.newsapp.injection.module.AppModule;
@@ -32,5 +33,8 @@ public class NewsApp extends Application{
 
     public static AppComponent getComponent(){
         return appComponent;
+    }
+    public static Context getAppContext(){
+        return appComponent.context();
     }
 }

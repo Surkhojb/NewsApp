@@ -1,6 +1,8 @@
 package com.clean.juanjo.newsapp.ui.detail;
 
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
@@ -21,6 +23,8 @@ import com.clean.juanjo.newsapp.ui.GlideApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import javax.inject.Inject;
+
 public class DetailActivity extends AppCompatActivity {
     public static String ARTICLE_EXTRA = "article";
     private ArticleModel article;
@@ -62,8 +66,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private void loadArticle(ArticleModel article) {
         GlideApp.with(imgArticle).load(article.getUrlImage())
-                .placeholder(new ColorDrawable(Color.parseColor("#D3D3D3")))
-                .error(new ColorDrawable(Color.parseColor("#D3D3D3"))).into(imgArticle);
+            .placeholder(new ColorDrawable(getColor(R.color.colorPlaceHolder)))
+            .error(new ColorDrawable(getColor(R.color.colorPlaceHolder))).into(imgArticle);
         tvAuthor.setText(article.getDateAndAuthor());
         tvTitle.setText(article.getTitle());
         tvDescription.setText(article.getDescription());

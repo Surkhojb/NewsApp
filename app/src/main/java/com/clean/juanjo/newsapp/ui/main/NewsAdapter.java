@@ -1,5 +1,7 @@
 package com.clean.juanjo.newsapp.ui.main;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.CardView;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.clean.juanjo.newsapp.NewsApp;
 import com.clean.juanjo.newsapp.R;
 import com.clean.juanjo.newsapp.domain.Article;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
@@ -21,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import javax.inject.Inject;
 
 /**
  * Created by Juanjo Berenguer.
@@ -31,6 +35,11 @@ import butterknife.ButterKnife;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<ArticleModel> articles = new ArrayList<>();
     private NewsClickListener listener;
+    private Context context;
+
+    public NewsAdapter() {
+        context = NewsApp.getAppContext();
+    }
 
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -92,8 +101,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             itemTitle.setText(article.getTitle());
             itemDescription.setText(article.getDescription());
             GlideApp.with(itemPicture).load(article.getUrlImage())
-                    .placeholder(new ColorDrawable(Color.parseColor("#D3D3D3")))
-                    .error(new ColorDrawable(Color.parseColor("#D3D3D3"))).into(itemPicture);
+                    .placeholder(new ColorDrawable(context.getColor(R.color.colorPlaceHolder)))
+                    .error(new ColorDrawable(context.getColor(R.color.colorPlaceHolder)))
+                    .into(itemPicture);
         }
 
         @Override

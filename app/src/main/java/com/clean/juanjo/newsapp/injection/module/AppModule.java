@@ -2,6 +2,7 @@ package com.clean.juanjo.newsapp.injection.module;
 
 import android.content.Context;
 
+import android.content.res.Resources;
 import com.clean.juanjo.newsapp.NewsApp;
 import com.clean.juanjo.newsapp.data.INewsRepository;
 import com.clean.juanjo.newsapp.data.NewsRepository;
