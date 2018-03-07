@@ -15,14 +15,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.clean.juanjo.newsapp.R;
-import com.clean.juanjo.newsapp.domain.Article;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
-import com.clean.juanjo.newsapp.ui.GlideApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.clean.juanjo.newsapp.ui.GlideApp;
 import javax.inject.Inject;
 
 public class DetailActivity extends AppCompatActivity {

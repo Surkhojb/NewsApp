@@ -1,5 +1,7 @@
 package com.clean.juanjo.newsapp.data;
 
+import android.arch.lifecycle.LiveData;
+import com.clean.juanjo.newsapp.data.local.ArticleDto;
 import com.clean.juanjo.newsapp.domain.News;
 
 import io.reactivex.Observable;
@@ -13,4 +15,5 @@ import io.reactivex.Observable;
 public interface INewsRepository {
     Observable<News> getNews();
     Observable<News> getNewsBySearch(String query);
+    LiveData<ArticleDto> getBooksMark();
 }

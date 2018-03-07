@@ -4,8 +4,10 @@ import android.app.Application;
 
 import android.content.Context;
 import com.clean.juanjo.newsapp.injection.component.AppComponent;
+
 import com.clean.juanjo.newsapp.injection.component.DaggerAppComponent;
 import com.clean.juanjo.newsapp.injection.module.AppModule;
+import com.clean.juanjo.newsapp.injection.module.LocalDataSourceModule;
 import com.clean.juanjo.newsapp.injection.module.RemoteDataSourceModule;
 
 /**
@@ -26,6 +28,7 @@ public class NewsApp extends Application{
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .remoteDataSourceModule(new RemoteDataSourceModule())
+                .localDataSourceModule(new LocalDataSourceModule(this))
                 .build();
 
         appComponent.inject(this);

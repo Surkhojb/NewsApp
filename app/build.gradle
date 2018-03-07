@@ -41,6 +41,8 @@ dependencies {
 
     implementation "android.arch.lifecycle:extensions:$project.androidArchVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$project.androidArchVersion"
+    implementation "android.arch.persistence.room:runtime:$project.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$project.roomVersion"
 
     implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
@@ -65,5 +67,6 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:$project.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$project.glideVersion"
+
 
 }

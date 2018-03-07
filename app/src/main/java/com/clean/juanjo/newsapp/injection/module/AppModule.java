@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import com.clean.juanjo.newsapp.NewsApp;
 import com.clean.juanjo.newsapp.data.INewsRepository;
 import com.clean.juanjo.newsapp.data.NewsRepository;
+import com.clean.juanjo.newsapp.data.local.ILocalDataSource;
+import com.clean.juanjo.newsapp.data.local.LocalDataSource;
 import com.clean.juanjo.newsapp.data.remote.IRemoteDataSource;
 import com.clean.juanjo.newsapp.data.remote.RemoteDataSource;
 
@@ -38,6 +40,10 @@ public class AppModule {
     @Provides
     IRemoteDataSource providesRemote(RemoteDataSource remoteDataSource){
         return remoteDataSource;
+    }
+
+    @Singleton ILocalDataSource providesLocalDb(LocalDataSource localDataSource){
+        return localDataSource;
     }
 
     @Provides
