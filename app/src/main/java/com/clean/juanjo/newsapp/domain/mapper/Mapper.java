@@ -1,4 +1,4 @@
-package com.clean.juanjo.newsapp.domain.model;
+package com.clean.juanjo.newsapp.domain.mapper;
 
 /**
  * Created by Juanjo Berenguer.

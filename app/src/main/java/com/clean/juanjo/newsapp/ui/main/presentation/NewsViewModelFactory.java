@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.clean.juanjo.newsapp.data.INewsRepository;
-import com.clean.juanjo.newsapp.domain.model.ArticleMapper;
+import com.clean.juanjo.newsapp.domain.mapper.ArticleToArticleModelMapper;
 
 import javax.inject.Inject;
 
@@ -18,10 +18,10 @@ import javax.inject.Inject;
 public class NewsViewModelFactory implements ViewModelProvider.Factory {
 
     private INewsRepository newsRepository;
-    private ArticleMapper articleMapper;
+    private ArticleToArticleModelMapper articleMapper;
 
     @Inject
-    public NewsViewModelFactory(INewsRepository repository, ArticleMapper mapper){
+    public NewsViewModelFactory(INewsRepository repository, ArticleToArticleModelMapper mapper){
         this.newsRepository = repository;
         this.articleMapper = mapper;
     }

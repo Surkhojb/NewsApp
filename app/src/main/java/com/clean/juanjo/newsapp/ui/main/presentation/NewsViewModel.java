@@ -5,12 +5,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.clean.juanjo.newsapp.data.INewsRepository;
-import com.clean.juanjo.newsapp.domain.Article;
-import com.clean.juanjo.newsapp.domain.News;
-import com.clean.juanjo.newsapp.domain.model.ArticleMapper;
+import com.clean.juanjo.newsapp.domain.mapper.ArticleToArticleModelMapper;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
-
-import org.reactivestreams.Subscription;
 
 import java.util.List;
 
@@ -28,9 +24,9 @@ public class NewsViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<List<ArticleModel>> listOfNews = new MutableLiveData<>();
     private INewsRepository newsRepository;
-    private ArticleMapper articleMapper;
+    private ArticleToArticleModelMapper articleMapper;
 
-    public NewsViewModel(INewsRepository repository,ArticleMapper mapper) {
+    public NewsViewModel(INewsRepository repository,ArticleToArticleModelMapper mapper) {
         this.newsRepository = repository;
         compositeDisposable = new CompositeDisposable();
         this.articleMapper = mapper;

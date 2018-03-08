@@ -1,7 +1,8 @@
-package com.clean.juanjo.newsapp.domain.model;
+package com.clean.juanjo.newsapp.domain.mapper;
 
 import com.clean.juanjo.newsapp.domain.Article;
 
+import com.clean.juanjo.newsapp.domain.model.ArticleModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +14,10 @@ import javax.inject.Inject;
  * Date: 06/03/2018.
  */
 
-public class ArticleMapper implements Mapper<ArticleModel,Article> {
+public class ArticleToArticleModelMapper implements Mapper<ArticleModel,Article> {
 
     @Inject
-    public ArticleMapper(){}
+    public ArticleToArticleModelMapper(){}
 
     @Override
     public ArticleModel map(Article article) {
