@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.clean.juanjo.newsapp.data.INewsRepository;
 import com.clean.juanjo.newsapp.domain.mapper.ArticleToArticleModelMapper;
+import com.clean.juanjo.newsapp.domain.mapper.ArticleTransformer;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
 
 import java.util.List;
@@ -24,12 +25,12 @@ public class NewsViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<List<ArticleModel>> listOfNews = new MutableLiveData<>();
     private INewsRepository newsRepository;
-    private ArticleToArticleModelMapper articleMapper;
+    private ArticleTransformer articleTransformer;
 
-    public NewsViewModel(INewsRepository repository,ArticleToArticleModelMapper mapper) {
+    public NewsViewModel(INewsRepository repository,ArticleTransformer transformer) {
         this.newsRepository = repository;
         compositeDisposable = new CompositeDisposable();
-        this.articleMapper = mapper;
+        this.articleTransformer = transformer;
     }
 
     @Override
@@ -45,12 +46,12 @@ public class NewsViewModel extends ViewModel {
     public void loadNews(){
        compositeDisposable.add(newsRepository.getNews().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(news -> listOfNews.setValue(articleMapper.transform(news.getArticles()))));
+                .subscribe(news -> listOfNews.setValue(articleTransformer.transform(news.getArticles()))));
     }
 
     public void loadNewsBySearch(String query) {
         compositeDisposable.add(newsRepository.getNewsBySearch(query).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(news -> listOfNews.setValue(articleMapper.transform(news.getArticles()))));
+                .subscribe(news -> listOfNews.setValue(articleTransformer.transform(news.getArticles()))));
     }
 }

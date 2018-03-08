@@ -2,6 +2,7 @@ package com.clean.juanjo.newsapp.domain.mapper;
 
 import com.clean.juanjo.newsapp.data.local.ArticleDto;
 import com.clean.juanjo.newsapp.domain.model.ArticleModel;
+import javax.inject.Inject;
 
 /**
  * Created by Juanjo Berenguer.
@@ -10,6 +11,10 @@ import com.clean.juanjo.newsapp.domain.model.ArticleModel;
  */
 
 public class ArticleDtoToArticleModelMapper implements Mapper<ArticleModel,ArticleDto> {
+
+  @Inject
+  public ArticleDtoToArticleModelMapper(){}
+
   @Override public ArticleModel map(ArticleDto dto) {
     ArticleModel model = new ArticleModel();
     model.setTitle(dto.getTitle());

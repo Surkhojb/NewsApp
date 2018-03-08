@@ -38,12 +38,5 @@ public class ArticleToArticleModelMapper implements Mapper<ArticleModel,Article>
         return null;
     }
 
-    public List<ArticleModel> transform(List<Article> articles){
-        List<ArticleModel> models = new ArrayList<>();
-        for(Article ar : articles){
-            models.add(this.map(ar));
-        }
 
-        return models;
-    }
 }
