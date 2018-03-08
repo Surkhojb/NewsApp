@@ -54,4 +54,9 @@ public class NewsViewModel extends ViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(news -> listOfNews.setValue(articleTransformer.transform(news.getArticles()))));
     }
+
+    public void insertToBooksMark(ArticleModel article){
+        compositeDisposable.add(newsRepository.addBooksMark(articleTransformer.dtoMapper.inverseMap(article))
+            .subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe());
+    }
 }

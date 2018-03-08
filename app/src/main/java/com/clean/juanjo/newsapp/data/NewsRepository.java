@@ -6,6 +6,8 @@ import com.clean.juanjo.newsapp.data.local.LocalDataSource;
 import com.clean.juanjo.newsapp.data.remote.RemoteDataSource;
 import com.clean.juanjo.newsapp.domain.News;
 
+import io.reactivex.Single;
+import java.util.concurrent.Callable;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
@@ -38,5 +40,12 @@ public class NewsRepository implements INewsRepository {
 
     @Override public LiveData<ArticleDto> getBooksMark() {
         return null;
+    }
+
+    @Override public Single<Boolean> addBooksMark(ArticleDto article) {
+        return Single.fromCallable(() -> {
+            local.addBooksMark(article);
+            return true;
+        });
     }
 }

@@ -5,6 +5,7 @@ import com.clean.juanjo.newsapp.data.local.ArticleDto;
 import com.clean.juanjo.newsapp.domain.News;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Created by Juanjo Berenguer.
@@ -16,4 +17,5 @@ public interface INewsRepository {
     Observable<News> getNews();
     Observable<News> getNewsBySearch(String query);
     LiveData<ArticleDto> getBooksMark();
+    Single<Boolean> addBooksMark(ArticleDto article);
 }
