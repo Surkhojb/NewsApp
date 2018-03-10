@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NewsClickListener
 
     @Override
     public void onBooksMarkClick(View v, int position) {
+        newsViewModel.insertToBooksMark(rvAdapter.getArticle(position));
         Toast.makeText(getApplicationContext(),"Booksmark clicked",Toast.LENGTH_SHORT).show();
     }
 
