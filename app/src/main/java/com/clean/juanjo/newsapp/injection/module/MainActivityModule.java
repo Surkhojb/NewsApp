@@ -1,10 +1,9 @@
 package com.clean.juanjo.newsapp.injection.module;
 
 import com.clean.juanjo.newsapp.data.INewsRepository;
-import com.clean.juanjo.newsapp.domain.mapper.ArticleToArticleModelMapper;
 import com.clean.juanjo.newsapp.domain.mapper.ArticleTransformer;
 import com.clean.juanjo.newsapp.injection.PerActivity;
-import com.clean.juanjo.newsapp.ui.main.presentation.NewsViewModelFactory;
+import com.clean.juanjo.newsapp.ui.main.modelview.NewsViewModelFactory;
 
 import dagger.Module;
 import dagger.Provides;

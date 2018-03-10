@@ -1,5 +1,6 @@
 package com.clean.juanjo.newsapp.ui.detail;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
@@ -21,6 +22,8 @@ import com.clean.juanjo.newsapp.domain.model.ArticleModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.clean.juanjo.newsapp.ui.GlideApp;
+import com.clean.juanjo.newsapp.ui.booksmark.BooksmarkActivity;
+
 import javax.inject.Inject;
 
 public class DetailActivity extends AppCompatActivity {
@@ -58,6 +61,9 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_share: return true;
+            case R.id.action_booksmark:
+                startActivity(new Intent(this, BooksmarkActivity.class));
+                return true;
             default: return super.onOptionsItemSelected(item);
         }
     }

@@ -1,8 +1,6 @@
 package com.clean.juanjo.newsapp.ui.main;
 
-import android.app.SearchManager;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -21,8 +18,8 @@ import com.clean.juanjo.newsapp.R;
 import com.clean.juanjo.newsapp.injection.component.DaggerMainActivityComponent;
 import com.clean.juanjo.newsapp.injection.module.MainActivityModule;
 import com.clean.juanjo.newsapp.ui.detail.DetailActivity;
-import com.clean.juanjo.newsapp.ui.main.presentation.NewsViewModel;
-import com.clean.juanjo.newsapp.ui.main.presentation.NewsViewModelFactory;
+import com.clean.juanjo.newsapp.ui.main.modelview.NewsViewModel;
+import com.clean.juanjo.newsapp.ui.main.modelview.NewsViewModelFactory;
 
 import javax.inject.Inject;
 

@@ -1,11 +1,10 @@
-package com.clean.juanjo.newsapp.ui.main.presentation;
+package com.clean.juanjo.newsapp.ui.main.modelview;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.clean.juanjo.newsapp.data.INewsRepository;
-import com.clean.juanjo.newsapp.domain.mapper.ArticleToArticleModelMapper;
 
 import com.clean.juanjo.newsapp.domain.mapper.ArticleTransformer;
 import javax.inject.Inject;

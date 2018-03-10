@@ -23,7 +23,8 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".ui.detail.DetailActivity"></activity>
+        <activity android:name=".ui.detail.DetailActivity" />
+        <activity android:name=".ui.booksmark.BooksmarkActivity"></activity>
     </application>
 
 </manifest>
