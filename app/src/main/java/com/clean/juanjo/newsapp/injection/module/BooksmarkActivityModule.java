@@ -1,5 +1,6 @@
 package com.clean.juanjo.newsapp.injection.module;
 
+import com.clean.juanjo.newsapp.data.INewsRepository;
 import com.clean.juanjo.newsapp.data.NewsRepository;
 import com.clean.juanjo.newsapp.domain.mapper.ArticleTransformer;
 import com.clean.juanjo.newsapp.injection.PerActivity;
@@ -21,7 +22,7 @@ public class BooksmarkActivityModule {
 
     @PerActivity
     @Provides
-    BooksmarkViewModelFactory providesFactory(NewsRepository repository,
+    BooksmarkViewModelFactory providesFactory(INewsRepository repository,
                                               ArticleTransformer transformer){
         return new BooksmarkViewModelFactory(repository,transformer);
     }

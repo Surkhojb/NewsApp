@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.clean.juanjo.newsapp.data.INewsRepository;
 import com.clean.juanjo.newsapp.data.NewsRepository;
 import com.clean.juanjo.newsapp.domain.mapper.ArticleTransformer;
 import com.clean.juanjo.newsapp.ui.main.modelview.NewsViewModel;
@@ -19,10 +20,10 @@ import javax.inject.Inject;
 public class BooksmarkViewModelFactory implements ViewModelProvider.Factory{
 
     private ArticleTransformer articleTransformer;
-    private NewsRepository newsRepository;
+    private INewsRepository newsRepository;
 
     @Inject
-    public BooksmarkViewModelFactory(NewsRepository repository,ArticleTransformer transformer){
+    public BooksmarkViewModelFactory(INewsRepository repository,ArticleTransformer transformer){
         this.newsRepository = repository;
         this.articleTransformer = transformer;
     }
