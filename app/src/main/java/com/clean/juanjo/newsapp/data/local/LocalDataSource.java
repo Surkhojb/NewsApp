@@ -1,6 +1,7 @@
 package com.clean.juanjo.newsapp.data.local;
 
 import android.arch.lifecycle.LiveData;
+import io.reactivex.Observable;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -13,14 +14,17 @@ import javax.inject.Inject;
 public class LocalDataSource implements ILocalDataSource {
 
   @Inject
+  ArticleDao articleDao;
+
+  @Inject
   public LocalDataSource(){}
 
-  @Override public LiveData<List<ArticleDto>> getArticles() {
-    return null;
+  @Override public Observable<List<ArticleDto>> getArticles() {
+    return Observable.fromCallable(() -> articleDao.getBooksMarks());
   }
 
   @Override public void addBooksMark(ArticleDto article) {
-
+    articleDao.insertArticle(article);
   }
 
   @Override public void deleteBooksMark(ArticleDto article) {

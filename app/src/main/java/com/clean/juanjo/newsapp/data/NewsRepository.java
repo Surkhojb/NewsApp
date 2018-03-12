@@ -1,15 +1,13 @@
 package com.clean.juanjo.newsapp.data;
 
-import android.arch.lifecycle.LiveData;
 import com.clean.juanjo.newsapp.data.local.ArticleDto;
-import com.clean.juanjo.newsapp.data.local.LocalDataSource;
-import com.clean.juanjo.newsapp.data.remote.RemoteDataSource;
+import com.clean.juanjo.newsapp.data.local.ILocalDataSource;
+import com.clean.juanjo.newsapp.data.remote.IRemoteDataSource;
 import com.clean.juanjo.newsapp.domain.News;
 
 import io.reactivex.Single;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
@@ -23,9 +21,9 @@ import io.reactivex.Observable;
 public class NewsRepository implements INewsRepository {
 
     @Inject
-    public RemoteDataSource remote;
+    public IRemoteDataSource remote;
     @Inject
-    public LocalDataSource local;
+    public ILocalDataSource local;
 
     @Inject
     public NewsRepository(){}
@@ -40,7 +38,7 @@ public class NewsRepository implements INewsRepository {
         return remote.getNewsBySearch(query);
     }
 
-    @Override public LiveData<List<ArticleDto>> getBooksMark() {
+    @Override public Observable<List<ArticleDto>> getBooksMark() {
         return local.getArticles();
     }
 

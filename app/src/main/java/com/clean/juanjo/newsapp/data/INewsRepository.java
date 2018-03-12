@@ -18,6 +18,6 @@ import io.reactivex.Single;
 public interface INewsRepository {
     Observable<News> getNews();
     Observable<News> getNewsBySearch(String query);
-    LiveData<List<ArticleDto>> getBooksMark();
+    Observable<List<ArticleDto>> getBooksMark();
     Single<Boolean> addBooksMark(ArticleDto article);
 }

@@ -16,8 +16,7 @@ import javax.inject.Singleton;
 
 @Module
 public class LocalDataSourceModule {
-  private ArticleDatabase database;
-  private NewsApp application;
+ private NewsApp application;
 
   public LocalDataSourceModule(NewsApp application) {
     this.application = application;
@@ -26,14 +25,13 @@ public class LocalDataSourceModule {
   @Singleton
   @Provides
   ArticleDatabase provideDatabase(){
-    database =  Room.databaseBuilder(application,ArticleDatabase.class,
+    return Room.databaseBuilder(application,ArticleDatabase.class,
         ArticleDatabase.DATABASE_NAME).build();
-    return database;
   }
 
   @Singleton
   @Provides
-  ArticleDao providesDao(){
+  ArticleDao providesDao(ArticleDatabase database){
     return database.articleDao();
   }
 

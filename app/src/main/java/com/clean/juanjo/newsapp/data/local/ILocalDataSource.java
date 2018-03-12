@@ -1,6 +1,7 @@
 package com.clean.juanjo.newsapp.data.local;
 
 import android.arch.lifecycle.LiveData;
+import io.reactivex.Observable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 
 public interface ILocalDataSource {
-  LiveData<List<ArticleDto>> getArticles();
+  Observable<List<ArticleDto>> getArticles();
   void addBooksMark(ArticleDto article);
   void deleteBooksMark(ArticleDto article);
 }
