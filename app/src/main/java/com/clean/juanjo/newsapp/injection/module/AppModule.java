@@ -42,10 +42,13 @@ public class AppModule {
         return remoteDataSource;
     }
 
-    @Singleton ILocalDataSource providesLocalDb(LocalDataSource localDataSource){
+    @Singleton
+    @Provides
+    ILocalDataSource providesLocalDb(LocalDataSource localDataSource){
         return localDataSource;
     }
 
+    @Singleton
     @Provides
     INewsRepository providesRepository(NewsRepository newsRepository){
         return newsRepository;

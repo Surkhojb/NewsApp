@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import com.clean.juanjo.newsapp.NewsApp;
 import com.clean.juanjo.newsapp.data.INewsRepository;
+import com.clean.juanjo.newsapp.data.local.ArticleDao;
 import com.clean.juanjo.newsapp.injection.module.LocalDataSourceModule;
 import com.clean.juanjo.newsapp.injection.module.RemoteDataSourceModule;
 import com.clean.juanjo.newsapp.injection.module.AppModule;

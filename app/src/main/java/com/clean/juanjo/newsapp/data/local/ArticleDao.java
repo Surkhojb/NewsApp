@@ -16,10 +16,10 @@ import java.util.List;
 @Dao
 public interface ArticleDao {
   @Query("SELECT * FROM articles")
-  LiveData<List<ArticleDto>> getBooksMarks();
+  List<ArticleDto> getBooksMarks();
 
   @Insert
-  void insertArticle(ArticleDto article);
+  long insertArticle(ArticleDto article);
 
   @Delete
   void deleteArticle(ArticleDto article);
