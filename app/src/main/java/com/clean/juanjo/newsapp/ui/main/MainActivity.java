@@ -120,6 +120,11 @@ public class MainActivity extends AppCompatActivity implements NewsClickListener
 
     @Override
     public void onShareClick(View v, int position) {
-        Toast.makeText(getApplicationContext(),"Share clicked",Toast.LENGTH_SHORT).show();
+       final String shareUrl = String.format("See this article: %s",rvAdapter.getArticle(position).getUrlToArticle());
+       Intent shareIntent = new Intent();
+       shareIntent.setAction(Intent.ACTION_SEND);
+       shareIntent.putExtra(Intent.EXTRA_TEXT,shareUrl);
+       shareIntent.setType("text/plain");
+       startActivity(shareIntent);
     }
 }
